@@ -1,0 +1,19 @@
+[h1]CARGO MANAGER[/h1]
+
+This modification (or a mod) allows to load cargo into vehicles and to unload cargo from vehicles. Loading and unloading is performed with the graphical user interface using a convenient dialog window. Dialog window is activated via the user action menu.
+
+[h1]SOURCE CODE[/h1]
+
+The source code is located at GitHub:
+https://github.com/neverwinter-nights/Cargo-Manager
+
+[h1]VERSION[/h1]
+
+0.1.
+
+[h1]RELEASE NOTES[/h1]
+
+[Version 0.1]
+[list]
+ [*] Initial release.
+[/list]
