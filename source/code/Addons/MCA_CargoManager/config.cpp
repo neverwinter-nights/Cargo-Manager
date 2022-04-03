@@ -1,6 +1,6 @@
 // UI.
-#include "MCA_CargoManager\ui\styles.hpp"
-#include "MCA_CargoManager\ui\dialogs\cargo_manager.hpp"
+#include "ui\styles.hpp"
+#include "ui\dialogs\cargo_manager.hpp"
 
 // Main Properties of the Modification (Mod).
 class CfgPatches
