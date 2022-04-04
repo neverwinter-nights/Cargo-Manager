@@ -1,12 +1,10 @@
 // MCA_fn_initCargoManagerDialog.sqf.
 
-params ["_dialog", "_nearestVehicle"];
+params ["_callerPlayer", "_dialog", "_nearestVehicle"];
 
-// Set the Target Vehicle Name.
-private ["_ctrlVehicleText"];
+// Set the Target Vehicle Name in Dialog.
+private ["_ctrlVehicleText", "_nearestVehicleDisplayName"];
 _ctrlVehicleText = _dialog displayCtrl MCA_CargoManagerDialogCtrlId_TargetVehicle;
-
-private ["_nearestVehicleDisplayName"];
 _nearestVehicleDisplayName = _nearestVehicle call MCA_fn_getObjectDisplayName;
 _ctrlVehicleText ctrlSetText _nearestVehicleDisplayName;
 
@@ -16,12 +14,10 @@ _vehicleCargoObjects = getVehicleCargo _nearestVehicle;
 
 // Get nearest objects available for loading.
 private ["_possibleObjects"];
-_possibleObjects = _nearestVehicle call MCA_fn_getNearestObjectForLoading;
+_possibleObjects = _nearestVehicle call MCA_fn_getNearestObjectsForLoading;
 
 // Save the data inside the caller (player).
-player setVariable [MCA_CargoManagerVarName_managedVehicle, _nearestVehicle];
-player setVariable [MCA_CargoManagerVarName_objectsLoaded, _vehicleCargoObjects];
-player setVariable [MCA_CargoManagerVarName_objectsNearby, _possibleObjects];
+[_callerPlayer, _nearestVehicle, _vehicleCargoObjects, _possibleObjects] call MCA_fn_savePlayerData;
 
 // Put cargo objects to their dialog list.
 private ["_ctrlVehicleCargoList"];

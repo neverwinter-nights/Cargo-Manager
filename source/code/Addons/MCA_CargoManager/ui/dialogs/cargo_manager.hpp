@@ -112,7 +112,7 @@ class MCA_CargoManagerDialog
 			colorBackgroundActive[] =	{0.1, 1.0, 0.1, 1.0};
 			
 			// Action IDs: 1 = Load, 2 = Unload.
-			onButtonClick = "[2, lbCurSel 905] call MCA_fn_moveCargo; _this call MCA_fn_refreshCargoManagerDialog;";
+			onButtonClick = "[2, lbCurSel 905] call MCA_fn_moveCargo; [player, _this] call MCA_fn_refreshCargoManagerDialog;";
 		};
 		
 		
@@ -151,7 +151,7 @@ class MCA_CargoManagerDialog
 			colorBackgroundActive[] =	{0.1, 0.1, 1.0, 1.0};
 			
 			// Action IDs: 1 = Load, 2 = Unload.
-			onButtonClick = "[1, lbCurSel 908] call MCA_fn_moveCargo; _this call MCA_fn_refreshCargoManagerDialog;";
+			onButtonClick = "[1, lbCurSel 908] call MCA_fn_moveCargo; [player, _this] call MCA_fn_refreshCargoManagerDialog;";
 		};
 	};
 };

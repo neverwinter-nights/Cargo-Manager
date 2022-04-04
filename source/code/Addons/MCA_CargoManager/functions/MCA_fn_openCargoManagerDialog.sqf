@@ -4,25 +4,22 @@
 
 params ["_callerPlayer"];
 
-// Get the nearest vehicle.
-private ["_nearestObjects"];
-_nearestObjects = [_callerPlayer] call MCA_fn_getNearestVehiclesForCargoManagement;
-
-// If there are no vehicles nearby, exit.
-private ["_mustExit"];
+// Get the nearest stationary vehicle available for loading.
+private ["_res", "_mustExit"];
 _mustExit = false;
-if (count _nearestObjects < 1) then
+_res = [_callerPlayer] call MCA_fn_getNearestStationaryVehicle;
+if ((_res select 0) == false) then
 {
-    systemChat format ["No vehicle is nearby."];
+    systemChat format ["Error: %1.", _res select 2];
     _mustExit = true;
 };
 if (_mustExit) exitWith {};
 
 // Nearest vehicle is found. Get its name.
 private ["_nearestVehicle"];
-_nearestVehicle = _nearestObjects select 0;
+_nearestVehicle = _res select 1;
 
 // Open the dialog.
 private ["_dialog"];
 _dialog = createDialog ["MCA_CargoManagerDialog", true];
-[_dialog, _nearestVehicle] call MCA_fn_initCargoManagerDialog;
+[_callerPlayer, _dialog, _nearestVehicle] call MCA_fn_initCargoManagerDialog;

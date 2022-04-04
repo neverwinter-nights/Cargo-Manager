@@ -17,3 +17,8 @@ https://github.com/neverwinter-nights/Cargo-Manager
 [list]
  [*] Initial release.
 [/list]
+
+[Version 0.2]
+[list]
+ [*] Additional checks are implemented to prevent misusage of the add-on.
+[/list]

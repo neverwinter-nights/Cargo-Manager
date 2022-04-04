@@ -1,32 +1,33 @@
 // MCA_fn_refreshCargoManagerDialog.sqf.
 
-params ["_dialog"];
+params ["_callerPlayer", "_ctrl"];
 
-_dialog = ctrlParent _dialog;
+// This function is called by the dialog window.
+// It refreshes the dialog's contents and the data stored in the player.
+
+//systemChat format ["_callerPlayer=%1, _ctrl=%2.", _callerPlayer, _ctrl]; //DEBUG.
+
+private ["_dialog"];
+_dialog = ctrlParent (_ctrl select 0); // For some reason control is passed as an array.
 
 // Delete the data from player.
-player setVariable [MCA_CargoManagerVarName_managedVehicle, mil];
-player setVariable [MCA_CargoManagerVarName_objectsLoaded, nil];
-player setVariable [MCA_CargoManagerVarName_objectsNearby, nil];
+_callerPlayer call MCA_fn_deletePlayerData;
 
-// Get the nearest vehicle.
-private ["_nearestObjects"];
-_nearestObjects = [player] call MCA_fn_getNearestVehiclesForCargoManagement;
-
-// If there are no vehicles nearby, exit.
-private ["_mustExit"];
+// Get the nearest stationary vehicle available for loading.
+private ["_res", "_mustExit"];
 _mustExit = false;
-if (count _nearestObjects < 1) then
+_res = [_callerPlayer] call MCA_fn_getNearestStationaryVehicle;
+if ((_res select 0) == false) then
 {
-	closeDialog 2;
-    systemChat format ["No vehicle is nearby."];
+    systemChat format ["Error: %1.", _res select 2];
+    closeDialog 2;
     _mustExit = true;
 };
 if (_mustExit) exitWith {};
 
 // Nearest vehicle is found. Get its name.
 private ["_nearestVehicle"];
-_nearestVehicle = _nearestObjects select 0;
+_nearestVehicle = _res select 1;
 
 // Refresh the dialog.
-[_dialog, _nearestVehicle] call MCA_fn_initCargoManagerDialog;
+[_callerPlayer, _dialog, _nearestVehicle] call MCA_fn_initCargoManagerDialog;

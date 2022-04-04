@@ -11,6 +11,7 @@ params ["_actionId", "_objectIndex"];
 private ["_mustExit"];
 _mustExit = false;
 
+// Fool check.
 if (_objectIndex < 0) then 
 {
 	_mustExit = true;
@@ -18,6 +19,7 @@ if (_objectIndex < 0) then
 };
 if (_mustExit) exitWith{};
 
+// Hack check.
 if ((_actionId != 1) and (_actionId != 2)) then 
 {
 	_mustExit = true;
@@ -25,23 +27,30 @@ if ((_actionId != 1) and (_actionId != 2)) then
 };
 if (_mustExit) exitWith{};
 
-// Read the data from the player.
-private ["_managedVehicle", "_objectsLoaded", "_objectsNearby"];
-_managedVehicle = player getVariable MCA_CargoManagerVarName_managedVehicle;
-if (isNil "_managedVehicle") exitWith {};
-_objectsLoaded = player getVariable MCA_CargoManagerVarName_objectsLoaded;
-if (isNil "_objectsLoaded") exitWith {};
-_objectsNearby = player getVariable MCA_CargoManagerVarName_objectsNearby;
-if (isNil "_objectsNearby") exitWith {};
+// Verify that everything is normal before moving anything.
+// On error, close the dialog.
+private ["_res", "_mustExit", "_object"];
+_mustExit = false;
+_res = [player, _actionId, _objectIndex] call MCA_fn_isCargoMovementPossible;
+if ((_res select 0) == false) then
+{
+    systemChat format ["Operation is not possible. %1.", _res select 3];
+    closeDialog 2;
+    _mustExit = true;
+};
+if (_mustExit) exitWith {};
+
+// Get the vehicle and the moved object.
+private ["_managedVehicle", "_object"];
+_managedVehicle = _res select 1;
+_object = _res select 2;
 
 // Move the object.
-private ["_object", "_result"];
+private ["_result"];
 _result = false;
 
 if (_actionId == 1) then
 {
-	_object = _objectsNearby select _objectIndex;
-	
 	// Load the object.
 	_result = _managedVehicle setVehicleCargo _object;
 	if (_result) then {
@@ -51,8 +60,6 @@ if (_actionId == 1) then
 
 if (_actionId == 2) then
 {
-	_object = _objectsLoaded select _objectIndex;
-	
 	// Unload the object.
 	_result = objNull setVehicleCargo _object;
 	if (_result) then {
