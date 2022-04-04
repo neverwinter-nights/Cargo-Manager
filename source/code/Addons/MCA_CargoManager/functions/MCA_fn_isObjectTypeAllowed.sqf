@@ -22,5 +22,4 @@ if (_category == "Object") then
 };
 if (_success) exitWith { true };
 
-systemChat format ["Unsupported object. Category is %1, type is %2", _category, _type]; // DEBUG.
 if (true) exitWith { false };
