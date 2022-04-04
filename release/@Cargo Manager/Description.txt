@@ -9,7 +9,7 @@ https://github.com/neverwinter-nights/Cargo-Manager
 
 [h1]VERSION[/h1]
 
-0.1.
+0.2.
 
 [h1]RELEASE NOTES[/h1]
 
