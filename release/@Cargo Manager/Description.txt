@@ -9,7 +9,7 @@ https://github.com/neverwinter-nights/Cargo-Manager
 
 [h1]VERSION[/h1]
 
-0.2.
+0.3.
 
 [h1]RELEASE NOTES[/h1]
 
@@ -21,4 +21,9 @@ https://github.com/neverwinter-nights/Cargo-Manager
 [Version 0.2]
 [list]
  [*] Additional checks are implemented to prevent misusage of the add-on.
+[/list]
+
+[Version 0.3]
+[list]
+ [*] Animals and other "background" objects will not get into the list of objects. We don't play a zoo simulator :-)
 [/list]

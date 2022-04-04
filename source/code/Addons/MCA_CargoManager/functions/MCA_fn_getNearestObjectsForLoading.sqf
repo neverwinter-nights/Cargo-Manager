@@ -22,6 +22,9 @@ _objects = [];
 	// We ignore already loaded objects and those object which can not be loaded.
 	_willFit = _cargoVehicle canVehicleCargo _x;
 	if ((_willFit select 0) == false) then { continue };
+
+	// Unsupported object types and classes are ignored.
+	if ((_x call MCA_fn_isObjectTypeAllowed) == false) then { continue };
 	
 	_objects pushBack _x;
 } forEach _nearestObjectsIncludingItself;

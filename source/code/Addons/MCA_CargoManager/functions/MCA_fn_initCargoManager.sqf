@@ -7,7 +7,6 @@
 // Constants.
 MCA_CargoManagerActionText = "Cargo Manager";
 MCA_vehClassNamesToFind = ["LandVehicle", "Ship", "Air", "Helicopter"];
-MCA_objectsForLoadingToFind = ["LandVehicle", "Ship", "Air", "Helicopter", "WeaponHolder", "WeaponHolderSimulated"];
 MCA_vehSearchRadius = 30;
 MCA_inaccuracyForFloatCoordinate = 0.1;
 MCA_inaccuracyForFloatSpeed = 0.1;
@@ -39,6 +38,7 @@ MCA_fn_finCargoManagerDialog = compile preprocessFileLineNumbers "MCA_CargoManag
 MCA_fn_getNearestStationaryVehicle = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getNearestStationaryVehicle.sqf";
 MCA_fn_isCargoMovementPossible = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_isCargoMovementPossible.sqf";
 MCA_fn_arePositionsSame = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_arePositionsSame.sqf";
+MCA_fn_isObjectTypeAllowed = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_isObjectTypeAllowed.sqf";
 //
 MCA_fn_getPlayerData = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getPlayerData.sqf";
 MCA_fn_savePlayerData = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_savePlayerData.sqf";

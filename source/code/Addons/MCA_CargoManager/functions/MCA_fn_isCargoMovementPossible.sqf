@@ -43,17 +43,19 @@ if ((_callerPlayer distance _managedVehicle) > MCA_vehSearchRadius) then
 };
 if (_mustExit) exitWith { [false, nil, nil, _errText] };
 
-// Possible cargo objects must be stationary.
+// Possible cargo objects' checks.
 private ["_i"];
 _i = 0;
-{
+{	
+	// Object must be stationary.
     if ( ([position _x, _posObjectsNearby select _i] call MCA_fn_arePositionsSame) == false ) then
     {
-        _errText = format ["Possible cargo object #%1 is not stationary", _i + 1];
+        _errText = format ["Possible cargo object #%1 (%2) is not stationary", _i + 1, _x call MCA_fn_getObjectDisplayName];
         _mustExit = true;
     };
-
-    if (_mustExit) then { break };
+	if (_mustExit) then { break };
+	
+	// Next.
     _i = _i + 1;
 } forEach _objectsNearby;
 if (_mustExit) exitWith { [false, nil, nil, _errText] };
