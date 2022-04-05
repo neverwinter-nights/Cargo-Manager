@@ -1,6 +1,22 @@
 [h1]CARGO MANAGER[/h1]
 
-This modification (or a mod) allows to load cargo into vehicles and to unload cargo from vehicles. Loading and unloading is performed with the graphical user interface using a convenient dialog window. Dialog window is activated via the user action menu.
+This modification (or a mod) allows you to load cargo into vehicles and to unload cargo from vehicles. Loading and unloading is performed with the graphical user interface using a convenient dialog window. Dialog window is activated via the user action menu. After the cargo is unloaded it is possible to move it and fix its position on the ground (make it stationary object as in the usual game).
+
+[h1]USAGE INSTRUCTIONS[/h1]
+
+First of all, you will need a cargo vehicle that is capable of loading your cargo. Not every vehicle will be suitable for this purpose. Cargo versions of trucks, helicopters, airplanes and even ships will do the work. You need to place your cargo vehicle near the object that you want to transport.
+
+When the vehicle is placed, you can open up the 'Cargo Manager' menu from the player's action menu. There you can select an object and load it into your vehicle. If an object is not listed in the dialog window, then it is either too big for the vehicle or your vehicle is already full.
+
+When all your cargo is loaded, you can move your vehicle whereever you want, disembark and use the 'Cargo Manager' menu again to unload your cargo from the vehicle.
+
+When the cargo is unloaded you are able to use action menus on each of the unloaded objects to move them to your desired location.
+
+Note that you may pause the process of moving the unloaded objects (with the yellow action) any time you want, but as soon as you put your objects down (with the red action), your objects are fixed on the ground and become stationary. It is advised that you always fix your objects to the ground after their placement so that they don't create visual litter or spam of many action menus.
+
+If you would like to move the fixed object again, you can restart the process by moving your cargo vehicle to them and opening the 'Cargo Manager' interface again. Simple enough.
+
+One important note. Unloaded objects may be moved only by a person who unloaded them. Unloaded objects become unavailable for loading until you fix them on the ground. If your player character leaves the game, dies or respawns before fixing the objects on the ground, your objects become stationary and available for loading by other players.
 
 [h1]SOURCE CODE[/h1]
 
@@ -9,7 +25,7 @@ https://github.com/neverwinter-nights/Cargo-Manager
 
 [h1]VERSION[/h1]
 
-0.4.
+0.5.
 
 [h1]RELEASE NOTES[/h1]
 
@@ -31,4 +47,10 @@ https://github.com/neverwinter-nights/Cargo-Manager
 [Version 0.4]
 [list]
  [*] It is now possible to move objects after unloading them.
+[/list]
+
+[Version 0.5]
+[list]
+ [*] Player's speed is changed to walk when moving a cargo.
+ [*] Some memory usage optimizations are made.
 [/list]

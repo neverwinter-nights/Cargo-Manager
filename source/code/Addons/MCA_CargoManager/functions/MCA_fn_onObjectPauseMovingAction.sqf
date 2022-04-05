@@ -44,6 +44,8 @@ _actionIdForResume = _object addAction
 _object setVariable [MCA_CargoManagerVarName_actionIdForResume, _actionIdForResume];
 
 detach _object;
+_object setPosASL getPosASL _object; // https://community.bistudio.com/wiki/attachTo.
+_user forceWalk false;
 
 // Clear the current object inside the user.
 _user setVariable [MCA_CargoManagerVarName_currentObject, nil];

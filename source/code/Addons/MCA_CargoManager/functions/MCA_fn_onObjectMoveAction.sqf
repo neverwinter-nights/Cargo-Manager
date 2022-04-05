@@ -68,3 +68,4 @@ _object addAction
 ];
 
 _object attachTo [_user];
+_user forceWalk true;

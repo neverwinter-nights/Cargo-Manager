@@ -37,6 +37,7 @@ _object removeAction _actionId;
 // If the object is not detached, we must detach it.
 detach _object;
 _object setPosASL getPosASL _object; // https://community.bistudio.com/wiki/attachTo.
+_user forceWalk false;
 
 // Unlink the object from the user.
 _object setVariable [MCA_CargoManagerVarName_objectUser, nil];
@@ -44,3 +45,6 @@ _object setVariable [MCA_CargoManagerVarName_objectUser, nil];
 
 // Clear the current object inside the user.
 _user setVariable [MCA_CargoManagerVarName_currentObject, nil];
+
+// Clear the ActionId variable.
+_object setVariable [MCA_CargoManagerVarName_actionIdForResume, nil];

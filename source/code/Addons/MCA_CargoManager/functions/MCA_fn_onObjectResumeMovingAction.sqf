@@ -48,3 +48,4 @@ _actionIdForPause = _user addAction
 _user setVariable [MCA_CargoManagerVarName_actionIdForPause, _actionIdForPause];
 
 _object attachTo [_user];
+_user forceWalk true;
