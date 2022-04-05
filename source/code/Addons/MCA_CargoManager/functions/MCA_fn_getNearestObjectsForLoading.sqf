@@ -25,6 +25,14 @@ _objects = [];
 
 	// Unsupported object types and classes are ignored.
 	if ((_x call MCA_fn_isObjectTypeAllowed) == false) then { continue };
+
+	// Busy objects are ignored.
+	private ["_objectUser"];
+	_objectUser = _x getVariable MCA_CargoManagerVarName_objectUser;
+	if (!(isNil "_objectUser")) then
+	{
+	    if (alive _objectUser) then { continue };
+	};
 	
 	_objects pushBack _x;
 } forEach _nearestObjectsIncludingItself;

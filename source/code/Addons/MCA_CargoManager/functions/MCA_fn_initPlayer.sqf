@@ -25,6 +25,9 @@ player addAction
     ""      // MemoryPoint.
 ];
 
+player setVariable [MCA_CargoManagerVarName_movableObjects, []];
+player setVariable [MCA_CargoManagerVarName_actionIdForResumeOrPause, -1];
+
 // To keep this action with the player after respawn, we must add this action after each respawn.
 player addEventHandler
 [
@@ -51,5 +54,8 @@ player addEventHandler
             "",     // Selection.
             ""      // MemoryPoint.
         ];
+
+        _unit setVariable [MCA_CargoManagerVarName_movableObjects, []];
+        _unit setVariable [MCA_CargoManagerVarName_actionIdForResumeOrPause, -1];
 	}
 ];

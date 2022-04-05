@@ -9,7 +9,7 @@ https://github.com/neverwinter-nights/Cargo-Manager
 
 [h1]VERSION[/h1]
 
-0.3.
+0.4.
 
 [h1]RELEASE NOTES[/h1]
 
@@ -26,4 +26,9 @@ https://github.com/neverwinter-nights/Cargo-Manager
 [Version 0.3]
 [list]
  [*] Animals and other "background" objects will not get into the list of objects. We don't play a zoo simulator :-)
+[/list]
+
+[Version 0.4]
+[list]
+ [*] It is now possible to move objects after unloading them.
 [/list]
