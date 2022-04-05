@@ -49,6 +49,7 @@ _object = _res select 2;
 private ["_result"];
 _result = false;
 
+// Loading.
 if (_actionId == 1) then
 {
 	// Load the object.
@@ -58,6 +59,7 @@ if (_actionId == 1) then
 	};
 };
 
+// Unloading.
 if (_actionId == 2) then
 {
 	// Unload the object.
@@ -65,4 +67,30 @@ if (_actionId == 2) then
 	if (_result) then {
 		systemChat format ["Cargo has been unloaded."];
 	};
+
+	// Unloaded object must be "marked" to enable its movement and disallow its loading.
+	// We store the "user" of an object inside the object.
+	// We store the "used" object reference inside the player.
+	_object setVariable [MCA_CargoManagerVarName_objectUser, player];
+	[player, _object] call MCA_fn_addMovableObjectToPlayer;
+
+	_object addAction
+    [
+        MCA_MoveObjectActionText,
+        {
+            params ["_target", "_caller", "_actionId", "_arguments"];
+
+            [_target, _caller, _actionId] call MCA_fn_onObjectMoveAction;
+        },              // Script.
+        nil,            // Arguments.
+        0,              // Priority: bigger = higher.
+        false,          // ShowWindow.
+        false,          // HideOnUse.
+        "",             // Shortcut.
+        "true",         // Condition.
+        _object call MCA_fn_getObjectActionRadius,  // Radius, meters.
+        false,          // Unconscious.
+        "",             // Selection.
+        ""              // MemoryPoint.
+    ];
 };
