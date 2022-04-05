@@ -74,6 +74,9 @@ if (_actionId == 2) then
 	_object setVariable [MCA_CargoManagerVarName_objectUser, player];
 	[player, _object] call MCA_fn_addMovableObjectToPlayer;
 
+	_object setVariable [MCA_CargoManagerVarName_actionIdForResume, -1];
+
+    // Add a 'Move' action to the object.
 	_object addAction
     [
         MCA_MoveObjectActionText,
