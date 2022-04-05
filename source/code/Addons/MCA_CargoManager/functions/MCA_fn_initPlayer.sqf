@@ -26,7 +26,7 @@ player addAction
 ];
 
 player setVariable [MCA_CargoManagerVarName_movableObjects, []];
-player setVariable [MCA_CargoManagerVarName_actionIdForResumeOrPause, -1];
+player setVariable [MCA_CargoManagerVarName_actionIdForPause, -1];
 
 // To keep this action with the player after respawn, we must add this action after each respawn.
 player addEventHandler
@@ -56,6 +56,6 @@ player addEventHandler
         ];
 
         _unit setVariable [MCA_CargoManagerVarName_movableObjects, []];
-        _unit setVariable [MCA_CargoManagerVarName_actionIdForResumeOrPause, -1];
+        _unit setVariable [MCA_CargoManagerVarName_actionIdForPause, -1];
 	}
 ];

@@ -21,8 +21,10 @@ MCA_CargoManagerVarName_loadedObjects = "MCA_CM_loadedObjects";
 MCA_CargoManagerVarName_nearbyObjects = "MCA_CM_nearbyObjects";
 MCA_CargoManagerVarName_nearbyObjectsPositions = "MCA_CM_nearbyObjectsPositions";
 MCA_CargoManagerVarName_movableObjects = "MCA_CM_movableObjects";
+MCA_CargoManagerVarName_currentObject = "MCA_CM_currentObject";
 MCA_CargoManagerVarName_objectUser = "MCA_CM_objectUser";
-MCA_CargoManagerVarName_actionIdForResumeOrPause = "MCA_CM_AIFROP";
+MCA_CargoManagerVarName_actionIdForResume = "MCA_CM_AIFR";
+MCA_CargoManagerVarName_actionIdForPause = "MCA_CM_AIFP";
 
 // Dialog Control IDs.
 // These IDs are hard-coded in UI, see the 'ui\cargo_manager.hpp' file.
@@ -43,7 +45,7 @@ MCA_fn_getNearestStationaryVehicle = compile preprocessFileLineNumbers "MCA_Carg
 MCA_fn_isCargoMovementPossible = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_isCargoMovementPossible.sqf";
 MCA_fn_arePositionsSame = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_arePositionsSame.sqf";
 MCA_fn_isObjectTypeAllowed = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_isObjectTypeAllowed.sqf";
-MCA_fn_getObjectHorizontalRadius = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getObjectHorizontalRadius.sqf";
+MCA_fn_getObjectDiagonal = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getObjectDiagonal.sqf";
 MCA_fn_getObjectActionRadius = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getObjectActionRadius.sqf";
 //
 MCA_fn_initCargoManagerDialog = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_initCargoManagerDialog.sqf";

@@ -13,10 +13,18 @@ if (_user != _caller) then
 };
 if (_mustExit) exitWith {};
 
+// Because 'Pause' action is stored in user, when this action fired we need a way to get the object.
+// So, we need to store current object inside the user.
+_user setVariable [MCA_CargoManagerVarName_currentObject, _object];
+
+// Delete 'Move' action from object.
 _object removeAction _actionId;
 
+// Add a 'Pause' action to the user.
+// This action is added to user instead of object, because Arma's engine is so ugly
+// that it does not show actions when object is attached to player !
 private ["_actionIdForPause"];
-_actionIdForPause = _object addAction
+_actionIdForPause = _user addAction
 [
     MCA_PauseMovingObjectActionText,
     {
@@ -36,8 +44,9 @@ _actionIdForPause = _object addAction
     ""              // MemoryPoint.
 ];
 // While we have no access to all actions, we "invent a wheel" here.
-_user setVariable [MCA_CargoManagerVarName_actionIdForResumeOrPause, _actionIdForPause];
+_user setVariable [MCA_CargoManagerVarName_actionIdForPause, _actionIdForPause];
 
+// Add a 'Stop' action to the object.
 _object addAction
 [
     MCA_StopMovingObjectActionText,

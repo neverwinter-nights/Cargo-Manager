@@ -5,8 +5,6 @@ params ["_callerPlayer", "_ctrl"];
 // This function is called by the dialog window.
 // It refreshes the dialog's contents and the data stored in the player.
 
-//systemChat format ["_callerPlayer=%1, _ctrl=%2.", _callerPlayer, _ctrl]; //DEBUG.
-
 private ["_dialog"];
 _dialog = ctrlParent (_ctrl select 0); // For some reason control is passed as an array.
 

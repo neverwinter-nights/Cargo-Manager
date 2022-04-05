@@ -2,15 +2,10 @@
 
 params ["_object"];
 
-//systemChat format ["_object=%1", _object]; //DEBUG.
-
 if ((typeName _object) != "OBJECT") exitWith { "Error: Unsupported object type" };
-
-//systemChat format ["typeName=%1", typeName _object]; //DEBUG.
 
 private ["_objectType"];
 _objectType = typeof _object;
-//systemChat format ["_objectType=%1", _objectType]; //DEBUG.
 
 private ["_configType"];
 switch (true) do
@@ -35,8 +30,6 @@ switch (true) do
         _configType = "CfgGlasses";
     };
 };
-
-//systemChat format ["_configType=%1", _configType]; //DEBUG.
 
 private ["_objectDisplayName"];
 _objectDisplayName = getText (configFile >> _configType >> _objectType >> "displayName");

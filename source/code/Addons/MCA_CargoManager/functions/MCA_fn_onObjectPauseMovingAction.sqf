@@ -1,10 +1,12 @@
 // MCA_fn_onObjectPauseMovingAction.sqf.
 
+// 'Pause' action is stored in user, not in object !
+// Because Arma's engine is ugly.
 params ["_target", "_caller", "_actionId"];
 
 private ["_object", "_user", "_mustExit"];
-_object = _target;
-_user = _object getVariable MCA_CargoManagerVarName_objectUser;
+_user = _caller;
+_object = _user getVariable MCA_CargoManagerVarName_currentObject;
 _mustExit = false;
 if (_user != _caller) then
 {
@@ -13,8 +15,11 @@ if (_user != _caller) then
 };
 if (_mustExit) exitWith {};
 
-_object removeAction _actionId;
+// Delete 'Pause' action from user.
+_user removeAction _actionId;
+_user setVariable [MCA_CargoManagerVarName_actionIdForPause, -1];
 
+// Add a 'Resume' action to the object.
 private ["_actionIdForResume"];
 _actionIdForResume = _object addAction
 [
@@ -36,6 +41,9 @@ _actionIdForResume = _object addAction
     ""              // MemoryPoint.
 ];
 // While we have no access to all actions, we "invent a wheel" here.
-_user setVariable [MCA_CargoManagerVarName_actionIdForResumeOrPause, _actionIdForResume];
+_object setVariable [MCA_CargoManagerVarName_actionIdForResume, _actionIdForResume];
 
 detach _object;
+
+// Clear the current object inside the user.
+_user setVariable [MCA_CargoManagerVarName_currentObject, nil];

@@ -13,20 +13,34 @@ if (_user != _caller) then
 };
 if (_mustExit) exitWith {};
 
+// Delete 'Pause' action from user.
+private ["_actionIdForPause"];
+_actionIdForPause = _user getVariable MCA_CargoManagerVarName_actionIdForPause;
+if (_actionIdForPause != -1) then
+{
+    _user removeAction _actionIdForPause;
+    _user setVariable [MCA_CargoManagerVarName_actionIdForPause, -1];
+};
+
+// Delete 'Resume' action from object.
+private ["_actionIdForResume"];
+_actionIdForResume = _object getVariable MCA_CargoManagerVarName_actionIdForResume;
+if (_actionIdForResume != -1) then
+{
+    _object removeAction _actionIdForResume;
+    _object setVariable [MCA_CargoManagerVarName_actionIdForResume, -1];
+};
+
+// Delete 'Stop' action from object.
 _object removeAction _actionId;
 
 // If the object is not detached, we must detach it.
 detach _object;
 _object setPosASL getPosASL _object; // https://community.bistudio.com/wiki/attachTo.
 
-// Here we must delete an action which has left.
-// It is either 'resume' or 'pause'.
-// While we have no access to all actions, we "invent a wheel" here.
-private ["_actionIdForResumeOrPause"];
-_actionIdForResumeOrPause = _user getVariable MCA_CargoManagerVarName_actionIdForResumeOrPause;
-_object removeAction _actionIdForResumeOrPause;
-_user setVariable [MCA_CargoManagerVarName_actionIdForResumeOrPause, -1];
-
 // Unlink the object from the user.
 _object setVariable [MCA_CargoManagerVarName_objectUser, nil];
 [player, _object] call MCA_fn_deleteMovableObjectFromPlayer;
+
+// Clear the current object inside the user.
+_user setVariable [MCA_CargoManagerVarName_currentObject, nil];
