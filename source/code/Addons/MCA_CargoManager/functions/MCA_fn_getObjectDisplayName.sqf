@@ -4,33 +4,24 @@ params ["_object"];
 
 if ((typeName _object) != "OBJECT") exitWith { "Error: Unsupported object type" };
 
-private ["_objectType"];
-_objectType = typeof _object;
+private ["_className"];
+_className = typeof _object;
 
-private ["_configType"];
-switch (true) do
+private ["_configType", "_configTypes"];
+_configTypes = ["CfgAmmo", "CfgGlasses", "CfgLights", "CfgMagazines", "CfgVehicles", "CfgWeapons"];
+_configType = "";
+
+// Get the config type.
 {
-    case(isClass(configFile >> "CfgMagazines" >> _objectType)):
-    {
-        _configType = "CfgMagazines";
-    };
+	if (isClass (configFile >> _x >> _className)) then 
+	{
+		_configType = _x;
+		break;
+	};
+} forEach _configTypes;
 
-    case(isClass(configFile >> "CfgWeapons" >> _objectType)):
-    {
-        _configType = "CfgWeapons";
-    };
-
-    case(isClass(configFile >> "CfgVehicles" >> _objectType)):
-    {
-        _configType = "CfgVehicles";
-    };
-
-    case(isClass(configFile >> "CfgGlasses" >> _objectType)):
-    {
-        _configType = "CfgGlasses";
-    };
-};
+if (count _configType == 0) exitWith { "Error: Unsupported config type" };
 
 private ["_objectDisplayName"];
-_objectDisplayName = getText (configFile >> _configType >> _objectType >> "displayName");
+_objectDisplayName = getText (configFile >> _configType >> _className >> "displayName");
 _objectDisplayName

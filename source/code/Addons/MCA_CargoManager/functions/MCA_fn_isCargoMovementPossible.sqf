@@ -18,7 +18,7 @@ private ["_res", "_managedVehicle", "_objectsLoaded", "_objectsNearby", "_posObj
 _res = _callerPlayer call MCA_fn_getPlayerData;
 if ((_res select 0) == false) then
 {
-    _errText = format ["Error getting player data. Player is %1.", player];
+    _errText = format ["Error getting player data. Player is %1.", _callerPlayer];
     _mustExit = true;
 };
 if (_mustExit) exitWith { [false, nil, nil, _errText] };
@@ -58,6 +58,14 @@ _i = 0;
 	// Next.
     _i = _i + 1;
 } forEach _objectsNearby;
+if (_mustExit) exitWith { [false, nil, nil, _errText] };
+
+// Vehicle's cargo door (or doors) must be opened.
+if (_managedVehicle call MCA_fn_areCargoDoorsOpen == false) then
+{
+    _errText = format ["Cargo doors are not opened"];
+    _mustExit = true;
+};
 if (_mustExit) exitWith { [false, nil, nil, _errText] };
 
 // Get the moved object.

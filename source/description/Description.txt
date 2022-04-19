@@ -25,7 +25,7 @@ https://github.com/neverwinter-nights/Cargo-Manager
 
 [h1]VERSION[/h1]
 
-0.5.
+0.6.
 
 [h1]RELEASE NOTES[/h1]
 
@@ -53,4 +53,10 @@ https://github.com/neverwinter-nights/Cargo-Manager
 [list]
  [*] Player's speed is changed to walk when moving a cargo.
  [*] Some memory usage optimizations are made.
+[/list]
+
+[Version 0.6]
+[list]
+ [*] Vehicle doors manipulation has been added.
+ [*] Unloaded vehicles are now not movable.
 [/list]

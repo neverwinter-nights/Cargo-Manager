@@ -23,9 +23,11 @@ class MCA_CargoManagerDialog
 			y = 0 * GUI_GRID_H + GUI_GRID_Y;
 			w = 40 * GUI_GRID_W;
 			h = 25 * GUI_GRID_H;
+
 			colorBackground[] = {0.5,0.5,0.5,0.5};
 		};
 	};
+
 
 	class Controls
 	{
@@ -62,13 +64,14 @@ class MCA_CargoManagerDialog
 		};
 		class CancelButton: RscButton
 		{
-			text = "QUIT";
 			idc = 2; // 2 = Cancel.
 			moving = true;
+			text = "QUIT";
 			x = 33.5 * GUI_GRID_W + GUI_GRID_X;
 			y = 1.5 * GUI_GRID_H + GUI_GRID_Y;
 			w = 4.5 * GUI_GRID_W;
 			h = 2 * GUI_GRID_H;
+
 			colorText[] =				{1.0, 1.0, 1.0, 1.0};
 			colorBackground[] =			{1.0, 0.1, 0.1, 0.5};
 			colorFocused[] =			{1.0, 0.1, 0.1, 0.7};
@@ -96,17 +99,18 @@ class MCA_CargoManagerDialog
 			x = 1 * GUI_GRID_W + GUI_GRID_X;
 			y = 7 * GUI_GRID_H + GUI_GRID_Y;
 			w = 18 * GUI_GRID_W;
-			h = 15 * GUI_GRID_H;
+			h = 13 * GUI_GRID_H;
 		};
 		class UnloadButton: RscButton
 		{
-			text = "UNLOAD THE SELECTED CARGO";
 			idc = 906;
 			moving = true;
+			text = "UNLOAD THE SELECTED CARGO";
 			x = 1 * GUI_GRID_W + GUI_GRID_X;
-			y = 22.5 * GUI_GRID_H + GUI_GRID_Y;
+			y = 20.5 * GUI_GRID_H + GUI_GRID_Y;
 			w = 18 * GUI_GRID_W;
 			h = 2 * GUI_GRID_H;
+
 			colorBackground[] =			{0.1, 1.0, 0.1, 0.5};
 			colorFocused[] =			{0.1, 1.0, 0.1, 0.7};
 			colorBackgroundActive[] =	{0.1, 1.0, 0.1, 1.0};
@@ -135,23 +139,77 @@ class MCA_CargoManagerDialog
 			x = 21 * GUI_GRID_W + GUI_GRID_X;
 			y = 7 * GUI_GRID_H + GUI_GRID_Y;
 			w = 18 * GUI_GRID_W;
-			h = 15 * GUI_GRID_H;
+			h = 13 * GUI_GRID_H;
 		};
 		class LoadButton: RscButton
 		{
-			text = "LOAD THE SELECTED OBJECT";
 			idc = 909;
 			moving = true;
+			text = "LOAD THE SELECTED OBJECT";
 			x = 21 * GUI_GRID_W + GUI_GRID_X;
-			y = 22.5 * GUI_GRID_H + GUI_GRID_Y;
+			y = 20.5 * GUI_GRID_H + GUI_GRID_Y;
 			w = 18 * GUI_GRID_W;
 			h = 2 * GUI_GRID_H;
+
 			colorBackground[] =			{0.1, 0.1, 1.0, 0.5};
 			colorFocused[] =			{0.1, 0.1, 1.0, 0.7};
 			colorBackgroundActive[] =	{0.1, 0.1, 1.0, 1.0};
-			
 			// Action IDs: 1 = Load, 2 = Unload.
 			onButtonClick = "[1, lbCurSel 908] call MCA_fn_moveCargo; [player, _this] call MCA_fn_refreshCargoManagerDialog;";
+		};
+
+
+		// Doors Manipulator.
+		class DoorLabel: RscText
+		{
+			idc = 910;
+			moving = true;
+			text = "DOOR";
+			x = 1 * GUI_GRID_W + GUI_GRID_X;
+			y = 23 * GUI_GRID_H + GUI_GRID_Y;
+			w = 5 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
+		};
+		class DoorList: RscCombo
+        {
+            idc = 911;
+            moving = true;
+            x = 5 * GUI_GRID_W + GUI_GRID_X;
+            y = 23 * GUI_GRID_H + GUI_GRID_Y;
+            w = 18 * GUI_GRID_W;
+            h = 1 * GUI_GRID_H;
+        };
+        class DoorOpenButton: RscButton
+		{
+			idc = 912;
+			moving = true;
+			text = "OPEN";
+			x = 24 * GUI_GRID_W + GUI_GRID_X;
+			y = 23 * GUI_GRID_H + GUI_GRID_Y;
+			w = 5 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
+
+			colorBackground[] =			{0.1, 0.1, 1.0, 0.5};
+			colorFocused[] =			{0.1, 0.1, 1.0, 0.7};
+			colorBackgroundActive[] =	{0.1, 0.1, 1.0, 1.0};
+			// Action IDs: 1 = Open, 2 = Close.
+			onButtonClick = "[player, 1, lbText [911, lbCurSel 911]] call MCA_fn_changeDoorState; [player, _this] call MCA_fn_refreshCargoManagerDialog;";
+		};
+		class DoorCloseButton: RscButton
+		{
+			idc = 913;
+			moving = true;
+			text = "CLOSE";
+			x = 30 * GUI_GRID_W + GUI_GRID_X;
+			y = 23 * GUI_GRID_H + GUI_GRID_Y;
+			w = 5 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
+
+			colorBackground[] =			{0.1, 0.1, 1.0, 0.5};
+			colorFocused[] =			{0.1, 0.1, 1.0, 0.7};
+			colorBackgroundActive[] =	{0.1, 0.1, 1.0, 1.0};
+			// Action IDs: 1 = Open, 2 = Close.
+			onButtonClick = "[player, 2, lbText [911, lbCurSel 911]] call MCA_fn_changeDoorState; [player, _this] call MCA_fn_refreshCargoManagerDialog;";
 		};
 	};
 };

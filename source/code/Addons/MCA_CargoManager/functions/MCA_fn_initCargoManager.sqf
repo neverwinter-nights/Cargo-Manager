@@ -15,6 +15,9 @@ MCA_vehSearchRadius = 30;
 MCA_inaccuracyForFloatCoordinate = 0.1;
 MCA_inaccuracyForFloatSpeed = 0.1;
 
+// For some reason, door animation is bugged and we must manually make it "longer".
+MCA_doorAnimationDurationDelta = 1;
+
 // Variable Names.
 MCA_CargoManagerVarName_managedVehicle = "MCA_CM_managedVehicle";
 MCA_CargoManagerVarName_loadedObjects = "MCA_CM_loadedObjects";
@@ -26,11 +29,16 @@ MCA_CargoManagerVarName_objectUser = "MCA_CM_objectUser";
 MCA_CargoManagerVarName_actionIdForResume = "MCA_CM_AIFR";
 MCA_CargoManagerVarName_actionIdForPause = "MCA_CM_AIFP";
 
+// List of vehicle classes with doors that do not work with 'animateSource' functions,
+// but work with an old 'animate' function.
+MCA_CargoManager_VehicleClassNamesWithOldDoors = [];
+
 // Dialog Control IDs.
 // These IDs are hard-coded in UI, see the 'ui\cargo_manager.hpp' file.
 MCA_CargoManagerDialogCtrlId_TargetVehicle = 903;
 MCA_CargoManagerDialogCtrlId_VehicleCargoList = 905;
 MCA_CargoManagerDialogCtrlId_NearbyObjectsList = 908;
+MCA_CargoManagerDialogCtrlId_DoorsList = 911;
 
 // Functions.
 MCA_fn_getObjectDimensions = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getObjectDimensions.sqf";
@@ -63,6 +71,19 @@ MCA_fn_onObjectMoveAction = compile preprocessFileLineNumbers "MCA_CargoManager\
 MCA_fn_onObjectPauseMovingAction = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_onObjectPauseMovingAction.sqf";
 MCA_fn_onObjectResumeMovingAction = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_onObjectResumeMovingAction.sqf";
 MCA_fn_onObjectStopMovingAction = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_onObjectStopMovingAction.sqf";
+//
+MCA_fn_strHasPrefix = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_strHasPrefix.sqf";
+MCA_fn_getVehicleDoorAnimes = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getVehicleDoorAnimes.sqf";
+MCA_fn_getVehicleDoorStates = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getVehicleDoorStates.sqf";
+MCA_fn_oppositeState = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_oppositeState.sqf";
+MCA_fn_toggleAllDoors = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_toggleAllDoors.sqf";
+MCA_fn_getAnimationDuration = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getAnimationDuration.sqf";
+MCA_fn_getMaxDoorAnimationDuration = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getMaxDoorAnimationDuration.sqf";
+MCA_fn_changeDoorState = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_changeDoorState.sqf";
+MCA_fn_getDoorAnimationDuration = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getDoorAnimationDuration.sqf";
+MCA_fn_areCargoDoorsOpen = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_areCargoDoorsOpen.sqf";
+MCA_fn_getCargoDoorNames = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getCargoDoorNames.sqf";
+MCA_fn_doesVehicleUseOldDoors = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_doesVehicleUseOldDoors.sqf";
 
 // Work.
 call MCA_fn_initPlayer;

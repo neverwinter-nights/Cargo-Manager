@@ -248,6 +248,11 @@ class RscPicture
 	};
 };
 
+class RscPictureKeepAspect: RscPicture
+{
+	style = ST_MULTI + ST_TITLE_BAR + ST_KEEP_ASPECT_RATIO;
+};
+
 class RscEdit
 {
 	deletable = 0;

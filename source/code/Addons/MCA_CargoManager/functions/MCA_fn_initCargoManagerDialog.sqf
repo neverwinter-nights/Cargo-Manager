@@ -34,3 +34,12 @@ lbClear _ctrlNearbyObjectsList;
 {
 	_ctrlNearbyObjectsList lbAdd (_x call MCA_fn_getObjectDisplayName);
 } forEach _possibleObjects;
+
+// Fill the doors list.
+private ["_ctrlDoorsList", "_doorAnimes"];
+_doorAnimes = _nearestVehicle call MCA_fn_getVehicleDoorAnimes;
+_ctrlDoorsList = _dialog displayCtrl MCA_CargoManagerDialogCtrlId_DoorsList;
+lbClear _ctrlDoorsList;
+{
+	_ctrlDoorsList lbAdd _x;
+} forEach _doorAnimes;

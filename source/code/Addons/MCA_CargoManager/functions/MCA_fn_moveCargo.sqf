@@ -68,32 +68,35 @@ if (_actionId == 2) then
 		systemChat format ["Cargo has been unloaded."];
 	};
 
-	// Unloaded object must be "marked" to enable its movement and disallow its loading.
-	// We store the "user" of an object inside the object.
-	// We store the "used" object reference inside the player.
-	_object setVariable [MCA_CargoManagerVarName_objectUser, player];
-	[player, _object] call MCA_fn_addMovableObjectToPlayer;
+    // Movable unloaded object must be "marked" to enable its movement and disallow its loading until it is fixed.
+    if ((!(_object isKindOf "LandVehicle")) and (!(_object isKindOf "Ship")) and (!(_object isKindOf "Air"))) then
+    {
+        // We store the "user" of an object inside the object.
+        // We store the "used" object reference inside the player.
+        _object setVariable [MCA_CargoManagerVarName_objectUser, player];
+        [player, _object] call MCA_fn_addMovableObjectToPlayer;
 
-	_object setVariable [MCA_CargoManagerVarName_actionIdForResume, -1];
+        _object setVariable [MCA_CargoManagerVarName_actionIdForResume, -1];
 
-    // Add a 'Move' action to the object.
-	_object addAction
-    [
-        MCA_MoveObjectActionText,
-        {
-            params ["_target", "_caller", "_actionId", "_arguments"];
+	    // Add a 'Move' action to the object.
+        _object addAction
+        [
+            MCA_MoveObjectActionText,
+            {
+                params ["_target", "_caller", "_actionId", "_arguments"];
 
-            [_target, _caller, _actionId] call MCA_fn_onObjectMoveAction;
-        },              // Script.
-        nil,            // Arguments.
-        0,              // Priority: bigger = higher.
-        false,          // ShowWindow.
-        false,          // HideOnUse.
-        "",             // Shortcut.
-        "true",         // Condition.
-        _object call MCA_fn_getObjectActionRadius,  // Radius, meters.
-        false,          // Unconscious.
-        "",             // Selection.
-        ""              // MemoryPoint.
-    ];
+                [_target, _caller, _actionId] call MCA_fn_onObjectMoveAction;
+            },              // Script.
+            nil,            // Arguments.
+            0,              // Priority: bigger = higher.
+            false,          // ShowWindow.
+            false,          // HideOnUse.
+            "",             // Shortcut.
+            "true",         // Condition.
+            _object call MCA_fn_getObjectActionRadius,  // Radius, meters.
+            false,          // Unconscious.
+            "",             // Selection.
+            ""              // MemoryPoint.
+        ];
+    };
 };
