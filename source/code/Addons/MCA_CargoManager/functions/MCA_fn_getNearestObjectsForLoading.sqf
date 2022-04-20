@@ -21,6 +21,9 @@ _objects = [];
 	// Unsupported object types and classes are ignored.
 	if ((_x call MCA_fn_isObjectTypeAllowed) == false) then { continue };
 
+	// Object must be outside of other vehicles.
+	if (!(isNull (isVehicleCargo _x))) then { continue };
+
 	// Busy objects are ignored.
 	private ["_objectUser"];
 	_objectUser = _x getVariable MCA_CargoManagerVarName_objectUser;

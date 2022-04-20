@@ -25,7 +25,7 @@ https://github.com/neverwinter-nights/Cargo-Manager
 
 [h1]VERSION[/h1]
 
-0.6.
+0.7.
 
 [h1]RELEASE NOTES[/h1]
 
@@ -59,4 +59,10 @@ https://github.com/neverwinter-nights/Cargo-Manager
 [list]
  [*] Vehicle doors manipulation has been added.
  [*] Unloaded vehicles are now not movable.
+[/list]
+
+[Version 0.7]
+[list]
+ [*] Door animations list has been extended (with inherited class properties).
+ [*] Already loaded objects now can not be loaded into another vehicle without unloading.
 [/list]

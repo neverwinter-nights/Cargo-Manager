@@ -31,21 +31,7 @@ _openedDoorsCount = 0;
 	};
 } forEach _doors;
 
-// Different vehicle types are checked in different way.
-// For ships we check that at least one cargo door is opened.
-// For other types of vehicles all cargo doors must be opened.
-private ["_ok"];
-_ok = false;
-
-// Ship vehicle.
-if (_vehicle isKindOf "Ship") then 
-{
-	if (_openedDoorsCount >= 1) then { _ok = true; };
-};
-if (_ok) exitWith { true };
-
-// Non-ship vehicle.
-if (_openedDoorsCount == count _doors) then { _ok = true; };
-if (_ok) exitWith { true };
-
+// Due to the anarchy in the door animations, we do a very simple check.
+// If at least one cargo door is opened, cargo doors are opened.
+if (_openedDoorsCount >= 1) exitWith { true };
 false

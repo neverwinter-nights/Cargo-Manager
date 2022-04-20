@@ -26,7 +26,7 @@ switch (_vehClassName) do
 	case "CUP_I_LCU1600_RACS":				{ _cargoDoors = ["ramp_front", "ramp_rear"]; };
 		
 	// RHS vehicles.
-	// TODO: Add RHS.
+	// ...
 };
 
 if (count _cargoDoors > 0) exitWith { _cargoDoors };
