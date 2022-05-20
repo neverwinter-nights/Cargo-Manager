@@ -84,6 +84,7 @@ MCA_fn_getDoorAnimationDuration = compile preprocessFileLineNumbers "MCA_CargoMa
 MCA_fn_areCargoDoorsOpen = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_areCargoDoorsOpen.sqf";
 MCA_fn_getCargoDoorNames = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getCargoDoorNames.sqf";
 MCA_fn_doesVehicleUseOldDoors = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_doesVehicleUseOldDoors.sqf";
+MCA_fn_alignObjectToGround = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_alignObjectToGround.sqf";
 
 // Work.
 call MCA_fn_initPlayer;

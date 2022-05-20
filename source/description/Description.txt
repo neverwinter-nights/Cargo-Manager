@@ -66,3 +66,8 @@ https://github.com/neverwinter-nights/Cargo-Manager
  [*] Door animations list has been extended (with inherited class properties).
  [*] Already loaded objects now can not be loaded into another vehicle without unloading.
 [/list]
+
+[Version 0.8]
+[list]
+ [*] Unloaded objects are now aligned to the ground after fixing.
+[/list]

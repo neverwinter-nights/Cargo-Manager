@@ -39,6 +39,9 @@ detach _object;
 _object setPosASL getPosASL _object; // https://community.bistudio.com/wiki/attachTo.
 _user forceWalk false;
 
+// Align the object to the ground.
+_object call MCA_fn_alignObjectToGround;
+
 // Unlink the object from the user.
 _object setVariable [MCA_CargoManagerVarName_objectUser, nil];
 [player, _object] call MCA_fn_deleteMovableObjectFromPlayer;
