@@ -67,5 +67,6 @@ _object addAction
     ""              // MemoryPoint.
 ];
 
+_user call MCA_fn_holsterWeapon;
 _object attachTo [_user];
 _user forceWalk true;

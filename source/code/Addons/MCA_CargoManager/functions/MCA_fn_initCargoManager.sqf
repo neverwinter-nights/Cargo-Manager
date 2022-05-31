@@ -14,6 +14,14 @@ MCA_vehClassNamesToFind = ["LandVehicle", "Ship", "Air", "Helicopter"];
 MCA_vehSearchRadius = 30;
 MCA_inaccuracyForFloatCoordinate = 0.1;
 MCA_inaccuracyForFloatSpeed = 0.1;
+MCA_maxObjectDimsSumForMovement = 6.0;
+MCA_maxObjectMassForMovement = 1000.0;
+
+// Movement Restriction Types (enum).
+MCA_movementRestrictionReason_None = 0;
+MCA_movementRestrictionReason_Vehicle = 1;
+MCA_movementRestrictionReason_Dimensions = 2;
+MCA_movementRestrictionReason_Mass = 3;
 
 // For some reason, door animation is bugged and we must manually make it "longer".
 MCA_doorAnimationDurationDelta = 1;
@@ -85,6 +93,8 @@ MCA_fn_areCargoDoorsOpen = compile preprocessFileLineNumbers "MCA_CargoManager\f
 MCA_fn_getCargoDoorNames = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_getCargoDoorNames.sqf";
 MCA_fn_doesVehicleUseOldDoors = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_doesVehicleUseOldDoors.sqf";
 MCA_fn_alignObjectToGround = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_alignObjectToGround.sqf";
+MCA_fn_canObjectBeMovedAfterUnloading = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_canObjectBeMovedAfterUnloading.sqf";
+MCA_fn_holsterWeapon = compile preprocessFileLineNumbers "MCA_CargoManager\functions\MCA_fn_holsterWeapon.sqf";
 
 // Work.
 call MCA_fn_initPlayer;

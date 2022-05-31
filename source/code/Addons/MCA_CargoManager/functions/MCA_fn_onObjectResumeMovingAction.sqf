@@ -47,5 +47,6 @@ _actionIdForPause = _user addAction
 // While we have no access to all actions, we "invent a wheel" here.
 _user setVariable [MCA_CargoManagerVarName_actionIdForPause, _actionIdForPause];
 
+_user call MCA_fn_holsterWeapon;
 _object attachTo [_user];
 _user forceWalk true;

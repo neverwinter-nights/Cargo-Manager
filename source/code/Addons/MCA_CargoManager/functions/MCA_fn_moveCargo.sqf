@@ -64,12 +64,13 @@ if (_actionId == 2) then
 {
 	// Unload the object.
 	_result = objNull setVehicleCargo _object;
-	if (_result) then {
-		systemChat format ["Cargo has been unloaded."];
-	};
 
     // Movable unloaded object must be "marked" to enable its movement and disallow its loading until it is fixed.
-    if ((!(_object isKindOf "LandVehicle")) and (!(_object isKindOf "Ship")) and (!(_object isKindOf "Air"))) then
+    private ["_canObjectBeMovedAfterUnloading", "_objMovingRestrictionReason"];
+    _res = _object call MCA_fn_canObjectBeMovedAfterUnloading;
+    _canObjectBeMovedAfterUnloading = _res select 0;
+    _objMovingRestrictionReason = _res select 1;
+    if (_canObjectBeMovedAfterUnloading == true) then
     {
         // We store the "user" of an object inside the object.
         // We store the "used" object reference inside the player.
@@ -99,4 +100,34 @@ if (_actionId == 2) then
             ""              // MemoryPoint.
         ];
     };
+
+    // Report the result of the process.
+    if (_result) then {
+        private ["_msg"];
+        _msg = "Cargo has been unloaded.";
+
+        if (_canObjectBeMovedAfterUnloading) then
+        {
+            _msg = _msg + " You can move the object where you need.";
+        }
+        else
+        {
+            switch (_objMovingRestrictionReason) do
+            {
+                case MCA_movementRestrictionReason_Vehicle:
+                {
+                };
+                case MCA_movementRestrictionReason_Dimensions:
+                {
+                    _msg = _msg + " The object is too large to be moved manually.";
+                };
+                case MCA_movementRestrictionReason_Mass:
+                {
+                    _msg = _msg + " The object is too heavy to be moved manually.";
+                };
+            };
+        };
+
+		systemChat _msg;
+	};
 };

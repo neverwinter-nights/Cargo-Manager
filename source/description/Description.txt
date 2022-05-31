@@ -10,7 +10,7 @@ When the vehicle is placed, you can open up the 'Cargo Manager' menu from the pl
 
 When all your cargo is loaded, you can move your vehicle whereever you want, disembark and use the 'Cargo Manager' menu again to unload your cargo from the vehicle.
 
-When the cargo is unloaded you are able to use action menus on each of the unloaded objects to move them to your desired location.
+When the cargo is unloaded you are able to use action menus on each of the unloaded objects to move them to your desired location. There are, however, some restrictions. Vehicles, large objects and heavy objects can not be moved manually after unloading.
 
 Note that you may pause the process of moving the unloaded objects (with the yellow action) any time you want, but as soon as you put your objects down (with the red action), your objects are fixed on the ground and become stationary. It is advised that you always fix your objects to the ground after their placement so that they don't create visual litter or spam of many action menus.
 
@@ -25,7 +25,7 @@ https://github.com/neverwinter-nights/Cargo-Manager
 
 [h1]VERSION[/h1]
 
-0.7.
+0.9.
 
 [h1]RELEASE NOTES[/h1]
 
@@ -70,4 +70,12 @@ https://github.com/neverwinter-nights/Cargo-Manager
 [Version 0.8]
 [list]
  [*] Unloaded objects are now aligned to the ground after fixing.
+[/list]
+
+[Version 0.9]
+[list]
+ [*] Vehicle search is performed once the dialog window is opened. Selected vehicle remains unchanged while the dialog window is open.
+ [*] Unloaded cargo movement is now accompanied by weapon holster animation.
+ [*] Unloaded cargo can be moved when this movement is not restricted. Several additional checks have been added.
+ [*] A user-friendly text message has been added to show the reason when the unloaded cargo movement is restricted.
 [/list]

@@ -6,26 +6,43 @@ params ["_callerPlayer", "_ctrl"];
 // It refreshes the dialog's contents and the data stored in the player.
 
 private ["_dialog"];
-_dialog = ctrlParent (_ctrl select 0); // For some reason control is passed as an array.
+_dialog = ctrlParent (_ctrl select 0);
+
+// Get the used vehicle from the player.
+private ["_res", "_managedVehicle", "_mustExit", "_errText"];
+_res = _callerPlayer call MCA_fn_getPlayerData;
+_mustExit = false;
+if ((_res select 0) == false) then
+{
+    _errText = format ["Error getting player data. Player is %1.", _callerPlayer];
+    systemChat _errText;
+    _mustExit = true;
+};
+if (_mustExit) exitWith {};
+_managedVehicle = _res select 1;
 
 // Delete the data from player.
 _callerPlayer call MCA_fn_deletePlayerData;
 
-// Get the nearest stationary vehicle available for loading.
-private ["_res", "_mustExit"];
+// Vehicle must be stationary.
 _mustExit = false;
-_res = [_callerPlayer] call MCA_fn_getNearestStationaryVehicle;
-if ((_res select 0) == false) then
+if (speed _managedVehicle > MCA_inaccuracyForFloatSpeed) then
 {
-    systemChat format ["Error: %1.", _res select 2];
-    closeDialog 2;
+    _errText = format ["Vehicle is not stationary"];
+    systemChat _errText;
     _mustExit = true;
 };
 if (_mustExit) exitWith {};
 
-// Nearest vehicle is found. Get its name.
-private ["_nearestVehicle"];
-_nearestVehicle = _res select 1;
+// Vehicle must be reachable.
+_mustExit = false;
+if ((_callerPlayer distance _managedVehicle) > MCA_vehSearchRadius) then
+{
+    _errText = format ["Vehicle is not reachable"];
+    systemChat _errText;
+    _mustExit = true;
+};
+if (_mustExit) exitWith {};
 
 // Refresh the dialog.
-[_callerPlayer, _dialog, _nearestVehicle] call MCA_fn_initCargoManagerDialog;
+[_callerPlayer, _dialog, _managedVehicle] call MCA_fn_initCargoManagerDialog;
